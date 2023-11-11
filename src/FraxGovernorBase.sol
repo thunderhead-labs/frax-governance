@@ -220,11 +220,11 @@ abstract contract FraxGovernorBase is GovernorSettings, GovernorVotesQuorumFract
     /// @param timepoint A block.timestamp corresponding to a proposal snapshot
     /// @return shortCircuitThresholdAtTimepoint Total voting weight needed for short circuit to succeed
     function shortCircuitThreshold(uint256 timepoint) public view returns (uint256 shortCircuitThresholdAtTimepoint) {
-        uint256 snapshotBlockNumber = $snapshotTimestampToSnapshotBlockNumber[timepoint];
-        if (snapshotBlockNumber == 0 || snapshotBlockNumber >= block.number) revert InvalidTimepoint();
+        // uint256 snapshotBlockNumber = $snapshotTimestampToSnapshotBlockNumber[timepoint];
+        if (timepoint == 0 || timepoint >= block.timestamp) revert InvalidTimepoint();
 
         shortCircuitThresholdAtTimepoint =
-            (VE_FXS.totalSupplyAt(snapshotBlockNumber) * shortCircuitNumerator(timepoint)) /
+            (VE_FXS.totalSupplyAt(timepoint) * shortCircuitNumerator(timepoint)) /
             quorumDenominator();
     }
 
@@ -235,11 +235,11 @@ abstract contract FraxGovernorBase is GovernorSettings, GovernorVotesQuorumFract
     function quorum(
         uint256 timepoint
     ) public view override(IGovernor, GovernorVotesQuorumFraction) returns (uint256 quorumAtTimepoint) {
-        uint256 snapshotBlockNumber = $snapshotTimestampToSnapshotBlockNumber[timepoint];
-        if (snapshotBlockNumber == 0 || snapshotBlockNumber >= block.number) revert InvalidTimepoint();
+        // uint256 snapshotBlockNumber = $snapshotTimestampToSnapshotBlockNumber[timepoint];
+        if (timepoint == 0 || timepoint >= block.timestamp) revert InvalidTimepoint();
 
         quorumAtTimepoint =
-            (VE_FXS.totalSupplyAt(snapshotBlockNumber) * quorumNumerator(timepoint)) /
+            (VE_FXS.totalSupplyAt(timepoint) * quorumNumerator(timepoint)) /
             quorumDenominator();
     }
 

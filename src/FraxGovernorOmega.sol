@@ -673,7 +673,6 @@ contract FraxGovernorOmega is FraxGovernorBase {
         }
 
         uint256 currentTimepoint = clock();
-
         if (snapshot >= currentTimepoint || $snapshotTimestampToSnapshotBlockNumber[snapshot] >= block.number) {
             return ProposalState.Pending;
         }

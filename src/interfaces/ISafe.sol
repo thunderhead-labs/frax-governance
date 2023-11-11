@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: ISC
 pragma solidity >=0.8.19;
 
-import { Enum } from "@gnosis.pm/contracts/common/Enum.sol";
+import { Enum } from "@gnosis.pm/safe-contracts/contracts/common/Enum.sol";
 
 interface ISafe {
     // Mapping to keep track of all hashes (message or transaction) that have been approve by ANY owners

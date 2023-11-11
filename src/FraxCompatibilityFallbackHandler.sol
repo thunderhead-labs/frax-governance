@@ -23,9 +23,9 @@ pragma solidity >=0.7.0 <0.9.0;
 
 // ====================================================================
 
-import "@gnosis.pm/contracts/handler/DefaultCallbackHandler.sol";
-import "@gnosis.pm/contracts/interfaces/ISignatureValidator.sol";
-import "@gnosis.pm/contracts/GnosisSafe.sol";
+import "@gnosis.pm/safe-contracts/contracts/handler/DefaultCallbackHandler.sol";
+import "@gnosis.pm/safe-contracts/contracts/interfaces/ISignatureValidator.sol";
+import "@gnosis.pm/safe-contracts/contracts/GnosisSafe.sol";
 import { IFraxGovernorOmega } from "./interfaces/IFraxGovernorOmega.sol";
 
 /// @title FraxCompatibilityFallbackHandler

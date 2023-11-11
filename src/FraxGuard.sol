@@ -23,8 +23,8 @@ pragma solidity ^0.8.19;
 
 // ====================================================================
 
-import { IERC165 } from "@gnosis.pm/contracts/interfaces/IERC165.sol";
-import { Guard } from "@gnosis.pm/contracts/base/GuardManager.sol";
+import { IERC165 } from "@gnosis.pm/safe-contracts/contracts/interfaces/IERC165.sol";
+import { Guard } from "@gnosis.pm/safe-contracts/contracts/base/GuardManager.sol";
 import { Enum, ISafe } from "./interfaces/ISafe.sol";
 
 /// @title FraxGuard
