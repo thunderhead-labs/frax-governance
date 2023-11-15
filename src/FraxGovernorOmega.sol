@@ -249,13 +249,6 @@ contract FraxGovernorOmega is FraxGovernorBase {
     ) public returns (uint256 optimisticProposalId) {
         _requireSafeAllowlist(teamSafe);
 
-        // This check stops EOA Safe owners from pushing txs through that skip the more stringent FraxGovernorAlpha
-        // procedures. It disallows Omega from calling safe.approveHash() / changing Safe state outside of the
-        // addTransaction() / execute() / rejectTransaction() flow.
-        if (args.to == teamSafe) {
-            revert IFraxGovernorOmega.DisallowedTarget(args.to);
-        }
-
         // Disallow Safe delegatecalls to contracts not on allowlist
         if (args.operation == Enum.Operation.DelegateCall && $delegateCallAllowlist[args.to] != 1) {
             revert IFraxGovernorOmega.DelegateCallNotAllowed(args.to);
