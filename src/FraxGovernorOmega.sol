@@ -53,6 +53,8 @@ contract FraxGovernorOmega is FraxGovernorBase {
     /// @notice The address of the TimelockController contract
     address public immutable TIMELOCK_CONTROLLER;
 
+    uint256 public lastSnapshotTime;
+
     /// @notice Configuration and allowlist for Gnosis Safes approved for use with FraxGovernorOmega
     mapping(address safe => uint256 status) public $safeAllowlist;
 
@@ -286,6 +288,7 @@ contract FraxGovernorOmega is FraxGovernorBase {
         });
 
         $gnosisSafeToNonceToTxHash[teamSafe][args._nonce] = txHash;
+
 
         emit TransactionProposed({
             safe: teamSafe,
@@ -609,6 +612,10 @@ contract FraxGovernorOmega is FraxGovernorBase {
         address proposer = msg.sender;
         uint256 snapshot = clock() + votingDelay();
         uint256 deadline;
+
+        try VE_FXS.newSnapshotTime(snapshot) {} catch {}
+        
+        lastSnapshotTime = snapshot;
 
         {
             uint256 safeVotingPeriod = $safeVotingPeriod[teamSafe];

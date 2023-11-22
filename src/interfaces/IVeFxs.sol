@@ -98,4 +98,7 @@ interface IVeFxs {
     function admin() external view returns (address);
 
     function future_admin() external view returns (address);
+
+    function newSnapshotTime(uint256 snapshot) external;
+
 }
