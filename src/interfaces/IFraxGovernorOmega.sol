@@ -211,6 +211,8 @@ interface IFraxGovernorOmega {
 
     function votingPeriod() external view returns (uint256);
 
+    function lastSnapshotTime() external view returns (uint256);
+    
     error AlreadyOnDelegateCallAllowlist(address contractAddress);
     error AlreadyOnSafeAllowlist(address safe);
     error BadBatchArgs();
